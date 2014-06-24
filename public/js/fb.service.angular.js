@@ -2,6 +2,7 @@
 	'use strict';
 
 	var FB_APP_ID = 'your-appid-goes-in-here';
+	var FB_PERMISSIONS = 'public_profile, email, publish_actions'
 
 	var app = angular.module('ninebytes.fb.services', []);
 
@@ -17,6 +18,7 @@
 		// 'not-ready', 'ready', 'not_authorized', 'connected'
 		this.status = 'not_ready';
 		this.me = null;
+		this.permissions = null;
 
 		var checkLoginState = function() {
 			service.loading = true;
@@ -26,10 +28,17 @@
 			});
 		};
 
+		var getPermissions = function(readyCallback) {
+			FB.api('/me/permissions', function(response) {
+				service.permissions = response;
+				readyCallback();
+			});
+		}
+
 		var getMe = function(readyCallback) {
 			FB.api('/me', function(response) {
 				service.me = response;
-				readyCallback();
+				getPermissions(readyCallback);
 			});
 		};
 
@@ -37,7 +46,7 @@
 			service.status = response.status;
 
 			var readyCallback = function() {
-				console.log(service.me, service.status);
+				// console.log(service.me, service.status, service.permissions, response);
 				service.resetLoading();
 				service.ctrlScope.$apply();
 			}
@@ -48,6 +57,11 @@
 				readyCallback();
 			}
 
+		};
+
+		var resetService = function() {
+			service.me = null;
+			service.permissions = null;
 		};
 
 		this.init = function(ctrlScope) {
@@ -63,13 +77,13 @@
 			service.setLoading('Attempting to login...');
 			FB.login(function(response){
 				statusChangeCallback(response);
-			}, {scope: 'public_profile, email'});
+			}, {scope: FB_PERMISSIONS});
 		};
 
 		this.logout = function() {
 			service.setLoading('Logging you out...');
 			FB.logout(function(response) {
-				service.me = null;
+				resetService();
 				statusChangeCallback(response);
 			});
 		};

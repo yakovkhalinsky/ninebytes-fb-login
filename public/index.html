@@ -16,7 +16,7 @@
     <div ng-show="fb.error">{{fb.errorMessage}}</div>
 
     <div ng-show="!fb.loading">
-      <button ng-click="fb.login()" ng-show="fb.status === 'unknown'">Log In</button>
+      <button ng-click="fb.login()" ng-show="fb.status !== 'connected'">Log In</button>
       <button ng-click="fb.logout()" ng-show="fb.status === 'connected'">Log Out {{fb.me.first_name}}</button>
     </div>
 
