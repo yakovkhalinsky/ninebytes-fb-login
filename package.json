@@ -1,0 +1,17 @@
+{
+  "name": "ninebytes-fb-login",
+  "version": "0.0.1",
+  "description": "Facebook Login API Implemented in an Angular Service",
+  "main": "index.js",
+  "repository": "https://github.com/yakovkhalinsky/ninebytes-fb-login.git",
+  "author": "Yakov Khalinsky <yakov@ninebyt.es>",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-contrib-concat": "0.4.0",
+    "grunt-contrib-uglify": "0.5.0"
+  },
+  "dependencies": {
+    "express": "4.4.4"
+  }
+}
