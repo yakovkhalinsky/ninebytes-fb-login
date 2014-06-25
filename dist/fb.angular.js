@@ -19,6 +19,7 @@
 		this.status = 'not_ready';
 		this.me = null;
 		this.permissions = null;
+		this.authResponse = null;
 
 		var checkLoginState = function() {
 			service.loading = true;
@@ -44,9 +45,13 @@
 
 		var statusChangeCallback = function(response) {
 			service.status = response.status;
+			service.authResponse = response;
 
 			var readyCallback = function() {
-				// console.log(service.me, service.status, service.permissions, response);
+				// console.log('me:', service.me);
+				// console.log('status:', service.status);
+				// console.log('permissions:', service.permissions);
+				// console.log('authResponse:', service.authResponse);
 				service.resetLoading();
 				service.ctrlScope.$apply();
 			}
@@ -62,6 +67,7 @@
 		var resetService = function() {
 			service.me = null;
 			service.permissions = null;
+			service.authResponse = null;
 		};
 
 		this.init = function(ctrlScope) {
