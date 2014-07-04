@@ -1,13 +1,9 @@
 (function(angular) {
 	'use strict';
 
-	var FB_APP_ID = 'your-appid-goes-in-here';
-	var FB_PERMISSIONS = 'public_profile, email, publish_actions'
-
 	var app = angular.module('ninebytes.fb.services', []);
 
-	var FacebookLoginService = function() {
-
+	var FacebookLoginService = function(config) {
 		var service = this;
 
 		this.ctrlScope = {};
@@ -73,7 +69,7 @@
 		this.init = function(ctrlScope) {
 			service.ctrlScope = ctrlScope;
 			service.setLoading('Initialising authentication...');
-			FB.init({ appId: FB_APP_ID, cookie: true, xfbml: true, version: 'v2.0'});
+			FB.init({ appId: config.APP_ID, cookie: true, xfbml: true, version: 'v2.0'});
 			FB.getLoginStatus(function(response) {
 				statusChangeCallback(response);
 			});
@@ -83,7 +79,7 @@
 			service.setLoading('Attempting to login...');
 			FB.login(function(response){
 				statusChangeCallback(response);
-			}, {scope: FB_PERMISSIONS});
+			}, {scope: config.PERMISSIONS});
 		};
 
 		this.logout = function() {
@@ -109,32 +105,8 @@
 
 	};
 
+	FacebookLoginService.$inject = ['FacebookLoginConfig'];
+
 	app.service('FacebookLoginService', FacebookLoginService);
-
-})(this.angular);
-
-(function(angular) {
-	'use strict';
-
-	var app = angular.module('ninebytes.fb.controllers', []);
-
-	var FacebookLoginController = function($scope, facebookLoginService) {
-		$scope.fb = facebookLoginService;
-		facebookLoginService.init($scope);
-	};
-
-	FacebookLoginController.$inject = ['$scope', 'FacebookLoginService'];
-
-	app.controller('FacebookLoginController', FacebookLoginController);
-
-})(this.angular);
-
-(function(angular) {
-	'use strict';
-
-	angular.module('FacebookLoginApp', [
-		'ninebytes.fb.services',
-		'ninebytes.fb.controllers'
-	]);
 
 })(this.angular);

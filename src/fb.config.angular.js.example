@@ -1,0 +1,13 @@
+(function(angular) {
+    'use strict';
+
+    var app = angular.module('ninebytes.fb.config', []);
+
+    var FacebookLoginConfig = {
+        APP_ID: 'your-appid-goes-in-here',
+        PERMISSIONS: 'public_profile, email, publish_actions'
+    };
+
+    app.constant('FacebookLoginConfig', FacebookLoginConfig);
+
+})(this.angular);

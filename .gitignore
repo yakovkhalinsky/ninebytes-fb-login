@@ -1,2 +1,5 @@
-/node_modules/
 .DS_Store
+/node_modules/
+/dist
+/src/fb.config.angular.js
+/public/js/fb.angular.js

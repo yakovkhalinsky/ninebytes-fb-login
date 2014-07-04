@@ -7,15 +7,15 @@ An implementation of the Facebook Login API (v2.0) using an Angular service.
 
 1. First checkout a copy of this reposity with `git clone`
 2. Do an `npm install`
-3. Edit `public/js/fb.service.angular.js` and add your appId in `FB_APP_ID`
-4. Edit `public/js/fb.service.angular.js` and add required permissions in `FB_PERMISSIONS`
-5. Compile dist file (in `dist` directory) by running `grunt`
-6. To use the node.js verification module, update `lib/ninebytes-fb.js` with your app token in `APP_TOKEN`
+3. Copy `src/fb.config.angular.js.example` to `src/fb.config.angular.js`
+4. Edit `src/fb.config.angular.js` adding your appId in `APP_ID`
+5. Edit `src/fb.config.angular.js` adding your app's permissions in `PERMISSIONS`
+6. Run `grunt` in the base directory
+- Combines source files into `dist/fb.angular.js` and `dist/fb.angular.min.js`
+- Copies `dist/fb.angular.js` to `public/js/fb.angular.js` to use with the example web app
+7. To use the node.js verification module, update `lib/ninebytes-fb.js` with your app token in `APP_TOKEN`
 
-
-## Example
-
-Example and source files are located the `public` directory.
+***NOTE: `src/fb.config.angular.js` is git ignore to avoid commiting credentials to the repo***
 
 
 ## To run example
