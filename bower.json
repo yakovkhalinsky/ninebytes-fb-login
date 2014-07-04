@@ -1,0 +1,28 @@
+{
+  "name": "ninebytes-fb-login",
+  "main": "index.js",
+  "version": "0.0.2",
+  "homepage": "https://github.com/yakovkhalinsky/ninebytes-fb-login",
+  "authors": [
+    "Yakov Khalinsky <yakov@ninebyt.es>"
+  ],
+  "description": "Facebook Login 2.0 Angular Implementation",
+  "keywords": [
+    "angular",
+    "facebook",
+    "node.js"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests",
+    "dist",
+    ".idea",
+    "src/fb.config.angular.js"
+
+  ]
+}
