@@ -6,6 +6,8 @@ An implementation of the Facebook Login API (v2.0) using an Angular service.
 ## Installation instructions
 
 1. First checkout a copy of this reposity with `git clone`
+- Also available via `bower install angular-fb-login`
+
 2. Do an `npm install`
 3. Copy `src/fb.config.angular.js.example` to `src/fb.config.angular.js`
 4. Edit `src/fb.config.angular.js` adding your appId in `APP_ID`
