@@ -5,8 +5,13 @@
 
     var FacebookLoginConfig = {
         APP_ID: 'your-appid-goes-in-here',
-        PERMISSIONS: 'public_profile, email, publish_actions'
+        PERMISSIONS: 'public_profile, email, publish_actions',
+        DEBUG: false
     };
+
+    // DEBUG: true
+    // - this turns on console.logs
+    // Make sure you turn this off in production
 
     app.constant('FacebookLoginConfig', FacebookLoginConfig);
 
