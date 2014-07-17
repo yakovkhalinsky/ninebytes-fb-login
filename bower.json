@@ -1,7 +1,7 @@
 {
   "name": "ninebytes-fb-login",
   "main": "index.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/yakovkhalinsky/ninebytes-fb-login",
   "authors": [
     "Yakov Khalinsky <yakov@ninebyt.es>"

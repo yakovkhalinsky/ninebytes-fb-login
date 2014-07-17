@@ -6,12 +6,13 @@ An implementation of the Facebook Login API (v2.0) using an Angular service.
 ## Getting the module
 
 **From github**
-
 `git clone git@github.com:yakovkhalinsky/ninebytes-fb-login.git ninebytes-fb-login`
 
 **From bower**
-
 `bower install angular-fb-login`
+
+**From npm**
+`npm install ninebytes-fb-login`
 
 
 ## Installation instructions
@@ -31,15 +32,24 @@ An implementation of the Facebook Login API (v2.0) using an Angular service.
 
 ## To run example
 
-1. Run `node index.js`
+1. Run `node app.js`
 2. Visit `localhost:3000/index.html` in your browser
 
 
 ## Server-side user verification
 
-There is an example route handler in `index.js` that you can use at `localhost:3000/:authToken/:userId` in your browser once the user is logged in.
+There is an example route handler in `app.js` that you can use at `localhost:3000/:authToken/:userId` in your browser once the user is logged in.
 
 Another example implementation can be found in `example/fb.js`.
+
+If you used `npm install ninebytes-fb-login` get this module then use like so:
+``` 
+var fb = require('ninebytes-fb-login');
+
+fb.validateUserAccessTokenAndId(userAccessToken, userId, function(error, isValid) {
+    console.log('callback: ', error, isValid);
+});
+```
 
 
 ## Changelog
