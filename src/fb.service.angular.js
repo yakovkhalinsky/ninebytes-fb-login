@@ -3,7 +3,7 @@
 
 	var app = angular.module('ninebytes.fb.services', []);
 
-	var FacebookLoginService = function(config) {
+	var FacebookLoginService = function($q, $timeout, config) {
 		var service = this;
 
 		this.ctrlScope = {};
@@ -15,6 +15,7 @@
 		this.status = 'not_ready';
 		this.me = null;
 		this.permissions = null;
+		this.picture = null;
 		this.authResponse = null;
 
 		var checkLoginState = function() {
@@ -25,18 +26,31 @@
 			});
 		};
 
-		var getPermissions = function(readyCallback) {
+		var getPermissions = function() {
+			var deferred = $q.defer();
 			FB.api('/me/permissions', function(response) {
 				service.permissions = response;
-				readyCallback();
+				deferred.resolve();
 			});
+			return deferred.promise;
 		}
 
-		var getMe = function(readyCallback) {
+		var getMe = function() {
+			var deferred = $q.defer();
 			FB.api('/me', function(response) {
 				service.me = response;
-				getPermissions(readyCallback);
+				deferred.resolve();
 			});
+			return deferred.promise;
+		};
+
+		var getPicture = function() {
+			var deferred = $q.defer();
+			FB.api('/me/picture', function(response){
+				service.picture = response.data;
+				deferred.resolve();
+			});
+			return deferred.promise;
 		};
 
 		var statusChangeCallback = function(response) {
@@ -44,16 +58,20 @@
 			service.authResponse = response;
 
 			var readyCallback = function() {
-				// console.log('me:', service.me);
-				// console.log('status:', service.status);
-				// console.log('permissions:', service.permissions);
-				// console.log('authResponse:', service.authResponse);
-				service.resetLoading();
-				service.ctrlScope.$apply();
+				$timeout(function() {
+					if (config.DEBUG) {
+						console.log('me:', service.me);
+						console.log('status:', service.status);
+						console.log('permissions:', service.permissions);
+						console.log('picture:', service.picture);
+						console.log('authResponse:', service.authResponse);
+					}
+					service.resetLoading();
+				});
 			}
 
 			if (service.status === 'connected') {
-				getMe(readyCallback);
+				getMe().then(getPermissions).then(getPicture).then(readyCallback);
 			} else {
 				readyCallback();
 			}
@@ -93,9 +111,6 @@
 		this.setLoading = function(message, apply) {
 			service.loading = true;
 			service.loadingMessage = message;
-			if (apply) {
-				service.ctrlScope.$apply();
-			}
 		};
 
 		this.resetLoading = function() {
@@ -105,7 +120,7 @@
 
 	};
 
-	FacebookLoginService.$inject = ['FacebookLoginConfig'];
+	FacebookLoginService.$inject = ['$q', '$timeout', 'FacebookLoginConfig'];
 
 	app.service('FacebookLoginService', FacebookLoginService);
 
