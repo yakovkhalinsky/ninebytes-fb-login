@@ -1,4 +1,10 @@
-### Version: 0.0.4
+### Version: 0.0.6
+
+**2014-08-17
+
+- Updated FB.init() to support new option for version
+
+### Version: 0.0.4, 0.0.5
 
 **2014-07-17**
 

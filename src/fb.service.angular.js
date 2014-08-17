@@ -87,7 +87,7 @@
 		this.init = function(ctrlScope) {
 			service.ctrlScope = ctrlScope;
 			service.setLoading('Initialising authentication...');
-			FB.init({ appId: config.APP_ID, cookie: true, xfbml: true, version: 'v2.0'});
+			FB.init({ appId: config.APP_ID, version: config.API_VERSION});
 			FB.getLoginStatus(function(response) {
 				statusChangeCallback(response);
 			});
@@ -108,7 +108,7 @@
 			});
 		};
 
-		this.setLoading = function(message, apply) {
+		this.setLoading = function(message) {
 			service.loading = true;
 			service.loadingMessage = message;
 		};
