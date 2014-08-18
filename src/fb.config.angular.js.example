@@ -4,7 +4,7 @@
     var app = angular.module('ninebytes.fb.config', []);
 
     var FacebookLoginConfig = {
-        API_VERSION: '2.1',
+        API_VERSION: 'v2.1',
         APP_ID: 'your-appid-goes-in-here',
         PERMISSIONS: 'public_profile, email, publish_actions',
         DEBUG: false

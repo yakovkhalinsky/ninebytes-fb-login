@@ -1,6 +1,12 @@
+### Version: 0.0.7
+
+**2014-08-18**
+
+- Correction to API_VERSION value in example config
+
 ### Version: 0.0.6
 
-**2014-08-17
+**2014-08-17**
 
 - Updated FB.init() to support new option for version
 
