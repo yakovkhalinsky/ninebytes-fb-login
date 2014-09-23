@@ -1,3 +1,10 @@
+### Version: 0.0.9
+
+**2014-09-23**
+
+- server.login() and service.logout() now return promises that resolve once the action is finished
+
+
 ### Version: 0.0.8
 
 **2014-09-23**

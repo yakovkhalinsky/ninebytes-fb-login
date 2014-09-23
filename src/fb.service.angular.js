@@ -53,7 +53,7 @@
 			return deferred.promise;
 		};
 
-		var statusChangeCallback = function(response) {
+		var statusChangeCallback = function(response, deferred) {
 			service.status = response.status;
 			service.authResponse = response;
 
@@ -67,6 +67,9 @@
 						console.log('authResponse:', service.authResponse);
 					}
 					service.resetLoading();
+                    if (deferred) {
+                        deferred.resolve();
+                    }
 				});
 			}
 
@@ -94,18 +97,22 @@
 		};
 
 		this.login = function() {
+            var deferred = $q.defer();
 			service.setLoading('Attempting to login...');
 			FB.login(function(response){
-				statusChangeCallback(response);
+				statusChangeCallback(response, deferred);
 			}, {scope: config.PERMISSIONS});
+            return deferred.promise;
 		};
 
 		this.logout = function() {
+            var deferred = $q.defer();
 			service.setLoading('Logging you out...');
 			FB.logout(function(response) {
 				resetService();
-				statusChangeCallback(response);
+				statusChangeCallback(response, deferred);
 			});
+            return deferred.promise;
 		};
 
 		this.setLoading = function(message) {

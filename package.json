@@ -1,6 +1,6 @@
 {
   "name": "ninebytes-fb-login",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Facebook Login API Implemented in an Angular Service",
   "main": "index.js",
   "repository": "https://github.com/yakovkhalinsky/ninebytes-fb-login.git",
