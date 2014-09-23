@@ -17,17 +17,17 @@ An implementation of the Facebook Login API using an Angular service.
 
 ## Installation instructions
 
-1. Do an `npm install`
+1. Do an `npm install` to setup the example node.js app
 2. Copy `src/fb.config.angular.js.example` to `src/fb.config.angular.js`
 3. Edit `src/fb.config.angular.js` adding your appId in `APP_ID`
-4. Edit `src/fb.config.angular.js` adding your app's permissions in `PERMISSIONS`
-5. Edit `src/fb.config.angular.js` setting `DEBUG` to `true` will trigger console.log() for testing
-6. Run `grunt` in the base directory to create `dist` directory with files you can use in your project.
-7. To use the node.js verification module, update `lib/ninebytes-fb.js` with your app token in `APP_TOKEN`
+4. Edit `app.js` adding you Facebook App Token in `APP_TOKEN`
+5. Edit `src/fb.config.angular.js` adding your app's permissions in `PERMISSIONS`
+6. Edit `src/fb.config.angular.js` setting `DEBUG` to `true` will trigger console.log() for testing
+7. Run `grunt` in the base directory to create `dist` directory with files you can use in your project.
 
 **NOTE:** Step 6 also creates a minified version of the final distribution file. 
 
-***NOTE: `src/fb.config.angular.js` is git ignore to avoid commiting credentials to the repo***
+***NOTE: `src/fb.config.angular.js` is git ignore to avoid committing credentials to the repo***
 
 
 ## To run example
@@ -43,13 +43,8 @@ There is an example route handler in `app.js` that you can use at `localhost:300
 Another example implementation can be found in `example/fb.js`.
 
 If you used `npm install ninebytes-fb-login` get this module then use like so:
-``` 
-var fb = require('ninebytes-fb-login');
 
-fb.validateUserAccessTokenAndId(userAccessToken, userId, function(error, isValid) {
-    console.log('callback: ', error, isValid);
-});
-```
+The example route uses the [ninebytes-node-fb-login](https://github.com/yakovkhalinsky/ninebytes-node-fb-login) module.
 
 
 ## Changelog

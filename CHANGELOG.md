@@ -1,3 +1,10 @@
+### Version: 0.0.8
+
+**2014-09-23**
+
+- Split out node server side verification into separate module
+
+
 ### Version: 0.0.7
 
 **2014-08-18**
