@@ -10,12 +10,15 @@ app.all('/', function(req, res) {
 	res.send('I am alive!');
 });
 
-var APP_TOKEN = 'YOUR-FACEBOOK-APP-TOKEN';
+// Your apps token, can be obtained from: https://developers.facebook.com/tools/accesstoken/
+// (After you have setup your app in your Facebook developer account)
+
+var APP_TOKEN = '806466532750804|XBox3a2i1aS9KnmZAidR3nhevms';
 
 app.get('/verify/:userId/:authToken', function(req, res) {
-	console.log(req.params);
-	fb.validateUserAccessTokenAndId(fbAppToken, req.params.authToken, req.params.userId, function(error, isValid) {
-		res.json({isValid: isValid});
+	fb.validateUserAccessTokenAndId(APP_TOKEN, req.params.authToken, req.params.userId, function(error, response) {
+        console.log(error, response);
+		res.json({isValid: !error && response.isValid ? true : false});
 	});
 });
 

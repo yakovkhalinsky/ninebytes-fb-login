@@ -1,3 +1,12 @@
+### Version: 0.0.10
+
+**2014-10-06**
+
+- Introduced newer version of node.js server-side verification module
+- Included a "pre-rolled" version of real API credentials (test only app) to allow for a working example
+- Add a much improved example of both client-side and server side implementations
+
+
 ### Version: 0.0.9
 
 **2014-09-23**

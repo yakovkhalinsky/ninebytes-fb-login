@@ -132,3 +132,51 @@
 	app.service('FacebookLoginService', FacebookLoginService);
 
 })(this.angular);
+
+(function(angular) {
+	'use strict';
+
+	var app = angular.module('ninebytes.fb.controllers', []);
+
+	var FacebookLoginController = function($scope, facebookLoginService) {
+		$scope.fb = facebookLoginService;
+		facebookLoginService.init($scope);
+	};
+
+	FacebookLoginController.$inject = ['$scope', 'FacebookLoginService'];
+
+	app.controller('FacebookLoginController', FacebookLoginController);
+
+})(this.angular);
+
+(function(angular) {
+    'use strict';
+
+    var app = angular.module('ninebytes.fb.config', []);
+
+    var FacebookLoginConfig = {
+        API_VERSION: 'v2.1',
+        APP_ID: '806466532750804',
+        PERMISSIONS: 'public_profile, email, publish_actions',
+        DEBUG: true
+    };
+
+    // DEBUG: true
+    // - this turns on console.logs
+    // Make sure you turn this off in production
+
+    app.constant('FacebookLoginConfig', FacebookLoginConfig);
+
+})(this.angular);
+
+(function(angular) {
+	'use strict';
+
+	angular.module('FacebookLoginApp',
+		[
+			'ninebytes.fb.services',
+			'ninebytes.fb.controllers',
+			'ninebytes.fb.config'
+		]);
+
+})(this.angular);
