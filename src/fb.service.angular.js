@@ -88,12 +88,14 @@
 		};
 
 		this.init = function(ctrlScope) {
-			service.ctrlScope = ctrlScope;
+            var deferred = $q.defer();
+            service.ctrlScope = ctrlScope;
 			service.setLoading('Initialising authentication...');
 			FB.init({ appId: config.APP_ID, version: config.API_VERSION});
 			FB.getLoginStatus(function(response) {
-				statusChangeCallback(response);
+				statusChangeCallback(response, deferred);
 			});
+            return deferred.promise;
 		};
 
 		this.login = function() {

@@ -11,6 +11,10 @@
   </head>
   <body ng-app='ExampleApp' ng-controller='ExamplePageController'>
 
+    <div>
+        <p>Initialising Facebook API: {{initState}}</p>
+    </div>
+
     <div ng-show="fb.loading">{{fb.loadingMessage}}</div>
     <div ng-show="fb.error">{{fb.errorMessage}}</div>
 
@@ -21,6 +25,6 @@
 
       <p ng-show="response.isValid">Am I a valid user for this app? {{response.isValid}}</p>
     </div>
-
+    <div id="fb-root"></div>
   </body>
 </html>

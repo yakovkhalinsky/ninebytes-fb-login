@@ -30,15 +30,19 @@ An implementation of the Facebook Login API using an Angular service.
 ***NOTE: `src/fb.config.angular.js` is git ignore to avoid committing credentials to the repo***
 
 
-## Promise chaining from Login and Logout
+## Promise chaining from Init, Login and Logout
 
-The `login()` and `logout()` functions of the service return a promise.
+The `init()`, `login()` and `logout()` functions of the service return a promise.
 
 You can use this to change other function calls once these promises resolve.
 
 For example:
 
 ```
+fb.init(ctrlScope).then(function() {
+    // do something in here
+});
+
 fb.login().then(function() {
     // do something in here
 });
@@ -55,7 +59,8 @@ Note it is important to check the users authentication status in case either act
 
 ## To run example
 
-1. Run `node app.js`
+1. Run `npm install`
+2. Run `node app.js`
 2. Visit `localhost:3000/index.html` in your browser
 
 

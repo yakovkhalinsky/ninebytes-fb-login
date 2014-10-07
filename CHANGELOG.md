@@ -1,3 +1,10 @@
+### Version: 0.0.11
+
+**2014-10-07**
+
+- Implement a promise for service.init()
+
+
 ### Version: 0.0.10
 
 **2014-10-06**

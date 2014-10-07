@@ -7,12 +7,13 @@
 
     app.controller('ExamplePageController', ['$scope', '$http', 'FacebookLoginService',
         function ($scope, $http, facebookLoginService) {
-            console.log('ready', $scope, facebookLoginService);
-
             $scope.response = {};
+            $scope.initState = 'Initialising...';
 
             $scope.fb = facebookLoginService;
-            $scope.fb.init($scope);
+            $scope.fb.init($scope).then(function() {
+                $scope.initState = 'Ready!';
+            });
 
             $scope.verifyMe = function() {
                 $scope.response.isValid = 'checking...';
